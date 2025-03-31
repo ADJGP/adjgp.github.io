@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const numPortfolioLines = 40; // Número de líneas para el portafolio
     const portfolioAnimationSpeed = 0.3; // Velocidad para el portafolio (ajusta si es necesario)
-    const portfolioLineColor = 'rgba(0, 0, 0, 0.2)'; // Líneas negras con opacidad
+    const portfolioLineColor = 'rgba(0, 0, 0, 1)'; // Líneas negras con opacidad
 
     const portfolioLines = [];
     for (let i = 0; i < numPortfolioLines; i++) {
