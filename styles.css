@@ -276,3 +276,73 @@ footer {
     --float-x: -8%;
     --float-y: 12%;
 }
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+    transition: box-shadow 0.3s ease-in-out; /* Transición suave para el efecto */
+}
+
+.hero-content h1:hover {
+    box-shadow: 0 0 10px 5px #FFFF00, /* Onda amarilla */
+                0 0 20px 10px #00FFFF, /* Onda azul */
+                0 0 30px 15px #FF00FF; /* Onda roja */
+}
+
+.sound-wave-title {
+    position: relative; /* Necesario para posicionar los pseudo-elementos */
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+    overflow: hidden; /* Para que las ondas no se salgan del bounds del texto inicialmente */
+}
+
+.sound-wave-title::before,
+.sound-wave-title::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 0, 0.5); /* Onda amarilla semi-transparente */
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none; /* Para que no interfieran con el hover */
+    z-index: -1; /* Detrás del texto */
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.sound-wave-title::after {
+    background-color: rgba(0, 255, 255, 0.5); /* Onda azul semi-transparente */
+    transition-delay: 0.2s; /* Ligero retraso para la segunda onda */
+}
+
+.sound-wave-title:hover::before,
+.sound-wave-title:hover::after {
+    transform: translate(-50%, -50%) scale(2); /* Expande la onda */
+    opacity: 1;
+}
+
+/* Opcional: Agregar más ondas */
+.sound-wave-title::before {
+    transition-delay: 0s;
+    background-color: rgba(255, 0, 255, 0.5); /* Onda roja semi-transparente */
+}
+
+.sound-wave-title:hover::before {
+    transform: translate(-50%, -50%) scale(3); /* Diferente escala para variar el efecto */
+    opacity: 0.8;
+}
+
+.sound-wave-title::after {
+    transition-delay: 0.1s;
+}
+
+.sound-wave-title:hover::after {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0.6;
+}
