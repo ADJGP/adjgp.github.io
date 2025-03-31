@@ -262,6 +262,9 @@ footer {
     --float-x: 0%;
     --float-y: 0%;
     animation-timing-function: ease-in-out;
+    animation-duration: 5s; /* Asegúrate de tener una duración por defecto */
+    animation-iteration-count: infinite; /* Asegúrate de que la animación se repita */
+    animation-direction: alternate; /* Asegúrate de que alterne la dirección */
 }
 
 .animated-shape:nth-child(odd) {

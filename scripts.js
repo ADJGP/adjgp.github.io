@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const speedFactor = Math.random() * 0.5 + 0.5;
 
         shape.style.animation = `float ${duration}s infinite alternate ${directionX}${Math.random() * 20 + 10}%, ${directionY}${Math.random() * 20 + 10}%`;
-
         heroBackground.appendChild(shape);
         return shape;
     }
