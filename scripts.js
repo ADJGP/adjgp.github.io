@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
+    // Fondo animado del header
     const heroBackground = document.querySelector('.hero-background');
     const numLines = 50; // Número de líneas a generar
     const animationSpeed = 0.05; // Velocidad de la animación (ajusta según sea necesario)
