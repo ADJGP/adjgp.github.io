@@ -281,21 +281,22 @@ footer {
     font-size: 3.5em;
     margin-bottom: 10px;
     color: #fff;
-    transition: box-shadow 0.3s ease-in-out; /* Transición suave para el efecto */
+    transition: text-shadow 0.3s ease-in-out; /* Transición para text-shadow */
 }
 
 .hero-content h1:hover {
-    box-shadow: 0 0 10px 5px #FFFF00, /* Onda amarilla */
-                0 0 20px 10px #00FFFF, /* Onda azul */
-                0 0 30px 15px #FF00FF; /* Onda roja */
+    text-shadow: 0 0 10px #FFFF00, /* Onda amarilla */
+                 0 0 20px #00FFFF, /* Onda azul */
+                 0 0 30px #FF00FF; /* Onda roja */
 }
 
 .sound-wave-title {
-    position: relative; /* Necesario para posicionar los pseudo-elementos */
+    position: relative;
     font-size: 3.5em;
     margin-bottom: 10px;
     color: #fff;
-    overflow: hidden; /* Para que las ondas no se salgan del bounds del texto inicialmente */
+    overflow: hidden; /* Importante para que las ondas no se salgan demasiado */
+    display: inline-block; /* Para que el tamaño del elemento se ajuste al texto */
 }
 
 .sound-wave-title::before,
@@ -305,44 +306,46 @@ footer {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 0, 0.5); /* Onda amarilla semi-transparente */
+    width: 100%; /* Cubrir el ancho del texto */
+    height: 100%; /* Cubrir la altura del texto */
+    border-radius: 50%; /* Para un efecto de expansión radial */
+    background-color: rgba(255, 255, 0, 0.3); /* Ajusta la opacidad */
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
-    pointer-events: none; /* Para que no interfieran con el hover */
-    z-index: -1; /* Detrás del texto */
+    pointer-events: none;
+    z-index: -1;
     transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
 .sound-wave-title::after {
-    background-color: rgba(0, 255, 255, 0.5); /* Onda azul semi-transparente */
-    transition-delay: 0.2s; /* Ligero retraso para la segunda onda */
+    background-color: rgba(0, 255, 255, 0.3);
+    transition-delay: 0.2s;
 }
 
 .sound-wave-title:hover::before,
 .sound-wave-title:hover::after {
-    transform: translate(-50%, -50%) scale(2); /* Expande la onda */
-    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5); /* Ajusta la escala */
+    opacity: 0.7; /* Ajusta la opacidad */
 }
 
-/* Opcional: Agregar más ondas */
+/* Opcional: Más ondas */
 .sound-wave-title::before {
     transition-delay: 0s;
-    background-color: rgba(255, 0, 255, 0.5); /* Onda roja semi-transparente */
+    background-color: rgba(255, 0, 255, 0.3);
+    border-radius: 60%; /* Ligeramente ovalado para variar */
 }
 
 .sound-wave-title:hover::before {
-    transform: translate(-50%, -50%) scale(3); /* Diferente escala para variar el efecto */
-    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0.5;
 }
 
 .sound-wave-title::after {
     transition-delay: 0.1s;
+    border-radius: 40%; /* Otra variación */
 }
 
 .sound-wave-title:hover::after {
-    transform: translate(-50%, -50%) scale(2.5);
-    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0.4;
 }
