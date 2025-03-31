@@ -23,65 +23,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Fondo animado del header
     const heroBackground = document.querySelector('.hero-background');
-    const numLines = 50; // Número de líneas a generar
-    const animationSpeed = 0.05; // Velocidad de la animación (ajusta según sea necesario)
-    const lineColors = ['rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.5)']; // Colores de las líneas
+    const numShapes = 30; // Número de figuras a generar
+    const animationSpeed = 0.8; // Velocidad de la animación (ajusta según sea necesario)
+    const neonColors = ['#FFFF00', '#00FFFF', '#FF00FF']; // Amarillo, Cian (Azul Neón), Magenta (Rojo Neón)
 
-    function createLine() {
-        const line = document.createElement('div');
-        line.classList.add('animated-line');
+    function createShape() {
+        const shape = document.createElement('div');
+        shape.classList.add('animated-shape');
+        const type = Math.random() < 0.5 ? 'circle' : 'square'; // Aleatoriamente círculo o cuadrado
+        const size = Math.random() * 30 + 10; // Tamaño aleatorio
         const startX = Math.random() * 100;
         const startY = Math.random() * 100;
-        const length = Math.random() * 30 + 10; // Longitud aleatoria
-        const angle = Math.random() * 360; // Ángulo aleatorio
-        const color = lineColors[Math.floor(Math.random() * lineColors.length)];
+        const color = neonColors[Math.floor(Math.random() * neonColors.length)];
+        const opacity = Math.random() * 0.5 + 0.5; // Opacidad aleatoria (más bien opaco)
+        const duration = Math.random() * 5 + 3; // Duración de la animación en segundos
 
-        line.style.position = 'absolute';
-        line.style.width = `${length}px`;
-        line.style.height = '1px';
-        line.style.backgroundColor = color;
-        line.style.transformOrigin = 'left center';
-        line.style.transform = `translate(${startX}vw, ${startY}vh) rotate(${angle}deg)`;
-        line.style.opacity = 0;
-        line.life = 0; // Tiempo de vida de la línea
-        line.maxLife = Math.random() * 100 + 50; // Duración aleatoria antes de desaparecer
+        shape.style.position = 'absolute';
+        shape.style.width = `${size}px`;
+        shape.style.height = `${size}px`;
+        shape.style.backgroundColor = color;
+        shape.style.opacity = opacity;
+        shape.style.borderRadius = type === 'circle' ? '50%' : '0';
+        shape.style.left = `${startX}vw`;
+        shape.style.top = `${startY}vh`;
+        shape.style.pointerEvents = 'none'; // Para que no interfieran con los clics
 
-        heroBackground.appendChild(line);
-        return line;
+        // Animación de movimiento aleatorio (keyframe en CSS)
+        const directionX = Math.random() < 0.5 ? '' : '-';
+        const directionY = Math.random() < 0.5 ? '' : '-';
+        const speedFactor = Math.random() * 0.5 + 0.5;
+
+        shape.style.animation = `float ${duration}s infinite alternate ${directionX}${Math.random() * 20 + 10}%, ${directionY}${Math.random() * 20 + 10}%`;
+
+        heroBackground.appendChild(shape);
+        return shape;
     }
 
-    const lines = [];
-    for (let i = 0; i < numLines; i++) {
-        lines.push(createLine());
+    const shapes = [];
+    for (let i = 0; i < numShapes; i++) {
+        shapes.push(createShape());
     }
-
-    function animateLines() {
-        lines.forEach(line => {
-            line.life += 1;
-            const speedX = Math.cos(parseFloat(line.style.transform.split('rotate(')[1]) * Math.PI / 180) * animationSpeed;
-            const speedY = Math.sin(parseFloat(line.style.transform.split('rotate(')[1]) * Math.PI / 180) * animationSpeed;
-
-            const currentTranslate = line.style.transform.split('translate(')[1].split(')')[0].split(',');
-            let translateX = parseFloat(currentTranslate[0].replace('vw', '')) + speedX;
-            let translateY = parseFloat(currentTranslate[1].replace('vh', '')) + speedY;
-
-            line.style.transform = `translate(${translateX}vw, ${translateY}vh) rotate(${parseFloat(line.style.transform.split('rotate(')[1])}deg)`;
-            line.style.opacity = Math.min(1, line.life / 30); // Aparecer gradualmente
-            line.style.backgroundColor = line.style.backgroundColor.replace(/, \d\.\d+\)/, `, ${Math.max(0, 1 - line.life / line.maxLife)})`); // Desvanecer gradualmente
-
-            if (line.life > line.maxLife) {
-                line.remove();
-                const index = lines.indexOf(line);
-                if (index > -1) {
-                    lines.splice(index, 1);
-                }
-                lines.push(createLine()); // Reemplazar la línea vieja con una nueva
-            }
-        });
-        requestAnimationFrame(animateLines);
-    }
-
-    animateLines();
 });

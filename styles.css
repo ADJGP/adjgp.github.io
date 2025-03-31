@@ -30,61 +30,30 @@ h2 {
 
 /* Hero Section */
 .hero {
-    position: relative; /* Necesario para posicionar el fondo absolutamente */
-    background-color: #007bff; /* Un color de respaldo mientras la animación carga */
+    position: relative;
+    background-color: #000; /* Fondo negro */
     color: #fff;
     padding: 150px 20px;
     text-align: center;
-    overflow: hidden; /* Para que las líneas no se salgan del header */
+    overflow: hidden;
 }
 
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Asegura que esté detrás del contenido */
-}
-
-.hero-content {
-    position: relative; /* Asegura que el contenido esté encima del fondo */
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero h1 {
-    font-size: 3.5em;
-    margin-bottom: 10px;
-}
-
-.hero .profession {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.hero .tagline {
-    font-size: 1.2em;
-    margin-bottom: 30px;
+.hero-content h1,
+.hero-content .profession,
+.hero-content .tagline,
+.hero-content .button {
+    color: #fff; /* Asegurar que el texto sea blanco o claro */
 }
 
 .button {
-    display: inline-block;
-    background-color: #fff;
-    color: #007bff;
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1); /* Botón ligeramente transparente */
+    border: 1px solid #fff;
 }
 
 .button:hover {
-    background-color: #ddd;
-    color: #007bff;
+    background-color: rgba(255, 255, 255, 0.2);
 }
+
 
 /* Acerca de Mí */
 .profile-image {
@@ -281,4 +250,26 @@ footer {
         width: 120px;
         height: 120px;
     }
+}
+
+@keyframes float {
+    to {
+        transform: translate(var(--float-x), var(--float-y));
+    }
+}
+
+.animated-shape {
+    --float-x: 0%;
+    --float-y: 0%;
+    animation-timing-function: ease-in-out;
+}
+
+.animated-shape:nth-child(odd) {
+    --float-x: 10%;
+    --float-y: -5%;
+}
+
+.animated-shape:nth-child(even) {
+    --float-x: -8%;
+    --float-y: 12%;
 }
