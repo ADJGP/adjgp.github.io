@@ -349,3 +349,43 @@ footer {
     transform: translate(-50%, -50%) scale(1.8);
     opacity: 0.4;
 }
+
+#portafolio.section {
+    background-color: #fff; /* Fondo blanco para la sección de portafolio */
+    color: #333; /* Texto negro o gris oscuro */
+    position: relative; /* Necesario para posicionar el fondo animado */
+    overflow: hidden; /* Para que las líneas no se salgan de la sección */
+}
+
+#portafolio .section-content {
+    position: relative; /* Asegura que el contenido esté encima del fondo */
+    z-index: 1;
+}
+
+#portafolio .portfolio-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Detrás del contenido */
+}
+
+#portafolio h2 {
+    color: #007bff; /* O el color que desees para el título */
+}
+
+/* Ajusta el color de los elementos del portafolio si es necesario */
+#portafolio .project {
+    border-color: #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil sobre fondo blanco */
+}
+
+#portafolio .project a {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#portafolio .project a:hover {
+    background-color: #0056b3;
+}

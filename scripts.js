@@ -85,4 +85,70 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     animateLines();
+
+    const portfolioSection = document.getElementById('portafolio');
+    const portfolioBackground = document.createElement('div');
+    portfolioBackground.classList.add('portfolio-background');
+    portfolioSection.appendChild(portfolioBackground);
+
+    const numPortfolioLines = 40; // Número de líneas para el portafolio
+    const portfolioAnimationSpeed = 0.3; // Velocidad para el portafolio (ajusta si es necesario)
+    const portfolioLineColor = 'rgba(0, 0, 0, 0.2)'; // Líneas negras con opacidad
+
+    const portfolioLines = [];
+    for (let i = 0; i < numPortfolioLines; i++) {
+        portfolioLines.push(createPortfolioLine());
+    }
+
+    function createPortfolioLine() {
+        const line = document.createElement('div');
+        line.classList.add('animated-portfolio-line');
+        const startX = Math.random() * 100;
+        const startY = Math.random() * 100;
+        const length = Math.random() * 30 + 10;
+        const angle = Math.random() * 360;
+        const opacity = Math.random() * 0.3 + 0.2; // Opacidad para las líneas negras
+        const life = 0;
+        const maxLife = Math.random() * 120 + 80;
+
+        line.style.position = 'absolute';
+        line.style.width = `${length}px`;
+        line.style.height = '1px';
+        line.style.backgroundColor = portfolioLineColor;
+        line.style.opacity = opacity;
+        line.style.transformOrigin = 'left center';
+        line.style.transform = `translate(${startX}vw, ${startY}vh) rotate(${angle}deg)`;
+        line.life = life;
+        line.maxLife = maxLife;
+
+        portfolioBackground.appendChild(line);
+        return line;
+    }
+
+    function animatePortfolioLines() {
+        portfolioLines.forEach(line => {
+            line.life += 1;
+            const speedX = Math.cos(parseFloat(line.style.transform.split('rotate(')[1]) * Math.PI / 180) * portfolioAnimationSpeed;
+            const speedY = Math.sin(parseFloat(line.style.transform.split('rotate(')[1]) * Math.PI / 180) * portfolioAnimationSpeed;
+
+            const currentTranslate = line.style.transform.split('translate(')[1].split(')')[0].split(',');
+            let translateX = parseFloat(currentTranslate[0].replace('vw', '')) + speedX;
+            let translateY = parseFloat(currentTranslate[1].replace('vh', '')) + speedY;
+
+            line.style.transform = `translate(${translateX}vw, ${translateY}vh) rotate(${parseFloat(line.style.transform.split('rotate(')[1])}deg)`;
+            line.style.opacity = Math.max(0, 1 - line.life / line.maxLife);
+
+            if (line.life > line.maxLife) {
+                line.remove();
+                const index = portfolioLines.indexOf(line);
+                if (index > -1) {
+                    portfolioLines.splice(index, 1);
+                }
+                portfolioLines.push(createPortfolioLine());
+            }
+        });
+        requestAnimationFrame(animatePortfolioLines);
+    }
+
+    animatePortfolioLines();
 });
