@@ -197,10 +197,10 @@ document.addEventListener('DOMContentLoaded', function() {
         nextButton.addEventListener('click', nextSlideInfinite);
         prevButton.addEventListener('click', prevSlideInfinite);
     
-        // Opcional: Desplazamiento automático
+        // Opcional: Desplazamiento automático*/
         function autoSlide() {
             setInterval(nextSlideInfinite, 3000); // Cambia de slide cada 3 segundos
         }
-        autoSlide();*/
+        autoSlide();
 
 });
