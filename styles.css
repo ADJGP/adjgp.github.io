@@ -389,3 +389,67 @@ footer {
 #portafolio .project a:hover {
     background-color: #0056b3;
 }
+
+/* ... otros estilos ... */
+
+.skills-carousel-container {
+    position: relative;
+    overflow: hidden; /* Oculta los iconos que no están visibles */
+    padding: 20px;
+}
+
+.skills-carousel {
+    display: flex; /* Coloca los iconos en línea horizontalmente */
+    transition: transform 0.5s ease-in-out; /* Animación suave para el desplazamiento */
+}
+
+.skill-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+    min-width: 80px; /* Ancho mínimo para cada icono */
+}
+
+.skill-icon i {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    color: #007bff; /* Color de los iconos */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #666;
+    cursor: pointer;
+    padding: 10px;
+    outline: none;
+    transition: color 0.3s ease;
+}
+
+.carousel-button:hover {
+    color: #007bff;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+/* Ajusta el section-content para que el carrusel tenga un ancho adecuado */
+#habilidades .section-content {
+    max-width: 700px; /* Ajusta este valor según el ancho deseado del carrusel */
+    margin: 0 auto;
+    padding: 30px 20px;
+}

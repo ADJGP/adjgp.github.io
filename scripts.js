@@ -151,4 +151,56 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     animatePortfolioLines();
+    
+        const carouselContainer = document.querySelector('.skills-carousel-container');
+        const carousel = document.querySelector('.skills-carousel');
+        const prevButton = document.querySelector('.carousel-button.prev');
+        const nextButton = document.querySelector('.carousel-button.next');
+        const skillIcons = document.querySelectorAll('.skill-icon');
+        const iconWidth = skillIcons[0].offsetWidth + (parseInt(getComputedStyle(skillIcons[0]).marginRight) || 0) * 2; // Ancho de cada icono con márgenes
+        let currentIndex = 0;
+    
+        function scrollToItem(index) {
+            const translateX = -index * iconWidth;
+            carousel.style.transform = `translateX(${translateX}px)`;
+        }
+    
+        function nextSlide() {
+            if (currentIndex < skillIcons.length - 1) {
+                currentIndex++;
+                scrollToItem(currentIndex);
+            }
+        }
+    
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                scrollToItem(currentIndex);
+            }
+        }
+    
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+    
+        // Opcional: Hacer que el carrusel sea infinito (vuelve al principio/final)
+        
+        function nextSlideInfinite() {
+            currentIndex = (currentIndex + 1) % skillIcons.length;
+            scrollToItem(currentIndex);
+        }
+    
+        function prevSlideInfinite() {
+            currentIndex = (currentIndex - 1 + skillIcons.length) % skillIcons.length;
+            scrollToItem(currentIndex);
+        }
+    
+        nextButton.addEventListener('click', nextSlideInfinite);
+        prevButton.addEventListener('click', prevSlideInfinite);
+    
+        // Opcional: Desplazamiento automático
+        function autoSlide() {
+            setInterval(nextSlideInfinite, 3000); // Cambia de slide cada 3 segundos
+        }
+        autoSlide();
+
 });
