@@ -184,23 +184,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Opcional: Hacer que el carrusel sea infinito (vuelve al principio/final)
         
-        /*function nextSlideInfinite() {
+    function nextSlideInfinite() {
             currentIndex = (currentIndex + 1) % skillIcons.length;
             scrollToItem(currentIndex);
         }
     
-        function prevSlideInfinite() {
+    function prevSlideInfinite() {
             currentIndex = (currentIndex - 1 + skillIcons.length) % skillIcons.length;
             scrollToItem(currentIndex);
         }
     
-        nextButton.addEventListener('click', nextSlideInfinite);
-        prevButton.addEventListener('click', prevSlideInfinite);
+    nextButton.addEventListener('click', nextSlideInfinite);
+    prevButton.addEventListener('click', prevSlideInfinite);
     
-        // Opcional: Desplazamiento automático*/
-        function autoSlide() {
+        // Opcional: Desplazamiento automático
+    function autoSlide() {
             setInterval(nextSlideInfinite, 3000); // Cambia de slide cada 3 segundos
         }
-        autoSlide();
+    autoSlide();
 
 });
